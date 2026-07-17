@@ -401,7 +401,7 @@
 
     function render(items){
       if(!items || !items.length) items = FALLBACK;
-      const frag = items.slice(0,18).map(it=>
+      const frag = items.slice(0,10).map(it=>
         `<a href="${it.link}" target="_blank" rel="noopener">${(it.title||'').trim()}</a><span class="dot">●</span>`
       ).join('');
       itemsEl.innerHTML = frag + frag; // duplica pro loop infinito sem salto
@@ -409,7 +409,7 @@
       requestAnimationFrame(()=>{
         const track = document.getElementById('tickerTrack');
         const halfWidth = itemsEl.scrollWidth / 2;
-        const PX_POR_SEGUNDO = 45; // igual à velocidade da linha de câmbio
+        const PX_POR_SEGUNDO = 130; // mais rápido que o câmbio, pois o texto acumulado é bem maior
         const duration = Math.max(halfWidth / PX_POR_SEGUNDO, 8);
         track.style.animationDuration = duration + 's';
       });
