@@ -436,7 +436,8 @@
       ).join('');
       itemsEl.innerHTML = frag + frag; // duplica pro loop infinito sem salto
       requestAnimationFrame(()=>{
-        window.__startMarquee(document.getElementById('tickerTrack'), 45, document.querySelector('.ticker'));
+        const velocidadeNoticias = matchMedia('(min-width:721px)').matches ? 25 : 45; // desktop mais devagar que mobile
+        window.__startMarquee(document.getElementById('tickerTrack'), velocidadeNoticias, document.querySelector('.ticker'));
       });
     }
 
@@ -555,3 +556,4 @@
 </script>
 </body>
 </html>
+
