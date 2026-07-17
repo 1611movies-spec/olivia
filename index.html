@@ -359,12 +359,10 @@
   // ===== MOTOR DE SCROLL (usado pelas duas faixas: notícias e câmbio) =====
   // Move o elemento por transform, quadro a quadro, numa velocidade real e
   // constante em pixels/segundo — não depende de CSS animation-duration.
-  window.__startMarquee = function(el, pxPerSecondDesktop, hoverPauseEl){
+  window.__startMarquee = function(el, pxPerSecond, hoverPauseEl){
     if(!el) return;
     if(el.__marqueeRunning) return; // evita duplicar o loop se render() rodar de novo
     el.__marqueeRunning = true;
-    const isMobile = matchMedia('(max-width:720px)').matches;
-    const pxPerSecond = isMobile ? pxPerSecondDesktop/2 : pxPerSecondDesktop;
     let pos = 0;
     let paused = false;
     let lastTime = null;
@@ -438,7 +436,7 @@
       ).join('');
       itemsEl.innerHTML = frag + frag; // duplica pro loop infinito sem salto
       requestAnimationFrame(()=>{
-        window.__startMarquee(document.getElementById('tickerTrack'), 140, document.querySelector('.ticker'));
+        window.__startMarquee(document.getElementById('tickerTrack'), 45, document.querySelector('.ticker'));
       });
     }
 
@@ -557,4 +555,3 @@
 </script>
 </body>
 </html>
-
